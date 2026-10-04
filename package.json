@@ -2,7 +2,7 @@
   "name": "Cleaner Tube",
   "description": "The most customisable extension to make Youtube yours.",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "wxt",

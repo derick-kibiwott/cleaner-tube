@@ -7,58 +7,59 @@ export type PresetSettings = {
   settings: Partial<YoutubeSettings>;
 };
 
-export const PRESET_SETTINGS: Record<string, PresetSettings> = {
-  focus: {
-    name: "Focus",
-    description: "Removes distractions so you can concentrate on the video.",
-    settings: {
-      hideShorts: true,
-      hideComments: true,
-      hideMixes: true,
-    },
-  },
+const sharedSettings: Partial<YoutubeSettings> = {
+  skipCloseAds: true,
+};
 
+export const PRESET_SETTINGS: Record<string, PresetSettings> = {
   minimal: {
     name: "Minimal",
     description:
-      "Keeps YouTube clean by hiding unnecessary interface elements.",
+      "A cleaner interface. Hides extra menus, banners and promotions.",
     settings: {
-      hideHomeFeed: true,
-      hideShorts: true,
-      hideMixes: true,
       hideExplore: true,
       hideMoreFromYoutube: true,
       hideNotificationBell: true,
-      hideSidebarNavigation: true,
-      hideVideoDescription: true,
-      hideLiveChat: true,
+      hideSearchSuggestions: true,
+      hideMixes: true,
+      hideShorts: true,
       hideFundraiser: true,
       hideMerchTickets: true,
+      hideEndScreenCards: true,
+      ...sharedSettings,
+    },
+  },
+  focus: {
+    name: "Focus",
+    description:
+      "Watch one video without distractions: no suggestions, comments or autoplay.",
+    settings: {
+      hideHomeFeed: true,
+      disablePlayOnHover: true,
+      hideNotificationBell: true,
+      hideSidebarNavigation: true,
+      disableSearchInfiniteScroll: true,
+      hideSidebarSuggestions: true,
+      hideEndScreenCards: true,
+      hideEndScreenFeed: true,
+      hideComments: true,
+      hideLiveChat: true,
+      hideShorts: true,
+      disableAutoplay: true,
+      hideMerchTickets: true,
+      ...sharedSettings,
     },
   },
 
   "shorts-free": {
     name: "Shorts Free",
-    description: "Removes Shorts and prevents them from taking over your feed.",
+    description:
+      "Removes Shorts everywhere and opens any Shorts link in the normal player.",
     settings: {
       hideShorts: true,
+      hideShortsThumbnails: true,
       redirectShortsToDefaultVideoPlayer: true,
-      hideHomeFeed: true,
-      hideMixes: true,
-    },
-  },
-
-  quiet: {
-    name: "Quiet",
-    description:
-      "Hides notifications and social features for a quieter YouTube experience.",
-    settings: {
-      hideNotificationBell: true,
-      hideComments: true,
-      hideLikeButton: true,
-      hideLiveChat: true,
-      hideFundraiser: true,
-      hideMerchTickets: true,
+      ...sharedSettings,
     },
   },
 };

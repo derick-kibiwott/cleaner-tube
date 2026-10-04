@@ -19,7 +19,7 @@ export type SharedSettings = {
 export const SHARED_SETTINGS: SharedSettings = {
   enabled: true,
   theme: "dark",
-  activePreset: "focus",
+  activePreset: "minimal",
 };
 
 export type YoutubeSettings = {

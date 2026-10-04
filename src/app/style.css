@@ -1,0 +1,355 @@
+body[data-cleaner-tube-enabled="true"] {
+  /*+------------------------------------------------------------------+
+    |                         GENERAL SETTINGS                         |
+    +------------------------------------------------------------------ */
+
+  /* Hide Home Feed */
+  &.hideHomeFeed ytd-browse[page-subtype="home"] {
+    display: none !important;
+  }
+
+  /* Disable Play on Hover */
+  &.disablePlayOnHover {
+    & #video-preview,
+    & ytd-thumbnail-overlay-loading-preview-renderer[is-preview-loading] {
+      display: none !important;
+    }
+  }
+
+  /* Hide Search Suggestions */
+  &.hideSearchSuggestions {
+    & div.sbdd_a,
+    & .searchbox-dropdown,
+    & .ytSearchboxComponentSuggestionsContainer {
+      display: none !important;
+    }
+  }
+
+  /* Hide Subscriptions */
+  &.hideSubscriptions {
+    & ytd-guide-section-renderer.style-scope:nth-of-type(2) {
+      display: none !important;
+    }
+  }
+
+  /* Hide Explore Trending */
+  &.hideExplore {
+    & ytd-guide-section-renderer.style-scope:nth-of-type(4) {
+      display: none !important;
+    }
+  }
+
+  /* Hide More From Youtube */
+  &.hideMoreFromYoutube {
+    & ytd-guide-section-renderer.style-scope:nth-of-type(5) {
+      display: none !important;
+    }
+  }
+
+  /* Hide Notification Bell */
+  &.hideNotificationBell {
+    & ytd-notification-topbar-button-renderer {
+      display: none !important;
+    }
+  }
+
+  /* Hide Sidebar Navigation */
+  &.hideSidebarNavigation {
+    & tp-yt-app-drawer#guide,
+    & ytd-mini-guide-renderer[role="navigation"],
+    & yt-icon-button#guide-button {
+      display: none !important;
+    }
+
+    & ytd-app[guide-persistent-and-visible] ytd-page-manager.ytd-app,
+    & ytd-app[mini-guide-visible] ytd-page-manager.ytd-app,
+    & ytd-playlist-sidebar-renderer,
+    & ytd-playlist-header-renderer {
+      margin-left: 0px;
+      left: 0;
+    }
+  }
+
+  /* Hide Mixes */
+  &.hideMixes {
+    & ytd-rich-item-renderer:has(yt-collection-thumbnail-view-model) {
+      display: none !important;
+    }
+  }
+
+  /*+------------------------------------------------------------------+
+    |                      THUMBNAILS SETTINGS                         |
+    +------------------------------------------------------------------ */
+
+  /* Blur Video Thumbnails */
+  &.blurVideoThumbnails {
+    & yt-thumbnail-view-model:not(:where(ytm-shorts-lockup-view-model *)),
+    & ytd-playlist-thumbnail,
+    & ytd-thumbnail,
+    & .video-thumbnail-img,
+    & ytd-hero-playlist-thumbnail-renderer yt-img-shadow {
+      position: relative !important;
+      isolation: isolate !important;
+      &::before {
+        content: "";
+        position: absolute !important;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.05) !important;
+        backdrop-filter: blur(10px) !important;
+        z-index: 1000;
+        border-radius: inherit;
+      }
+    }
+
+    & div.ytp-modern-videowall-still-image {
+      position: relative;
+      isolation: isolate;
+
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(10px);
+        z-index: -1;
+        border-radius: inherit;
+      }
+    }
+  }
+
+  /* Hide Video Thumbnails */
+  &.hideVideoThumbnails {
+    & yt-thumbnail-view-model:not(:where(ytm-shorts-lockup-view-model *)),
+    & ytd-playlist-video-thumbnail-renderer,
+    & ytd-thumbnail > #thumbnail:has(yt-image),
+    & ytd-hero-playlist-thumbnail-renderer yt-img-shadow {
+      background-color: var(
+        --yt-sys-color-baseline--additive-background
+      ) !important;
+
+      & img {
+        opacity: 0 !important;
+        transition: opacity 0.3s ease-in-out;
+      }
+    }
+    & div.ytp-modern-videowall-still-image {
+      background-image: none !important;
+      background-color: var(
+        --yt-sys-color-baseline--additive-background
+      ) !important;
+    }
+  }
+
+  /* Gray Scale Video Thumbnails */
+  &.grayscaleVideoThumbnails {
+    & yt-thumbnail-view-model:not(:where(ytm-shorts-lockup-view-model *)) img,
+    & ytd-playlist-thumbnail img,
+    & ytd-thumbnail img,
+    & .video-thumbnail-img,
+    & ytd-hero-playlist-thumbnail-renderer yt-img-shadow img {
+      filter: grayscale(100%);
+    }
+
+    & div.ytp-modern-videowall-still-image {
+      position: relative;
+      isolation: isolate;
+      filter: grayscale(100%);
+    }
+  }
+
+  /* Blur Shorts Thumbnails */
+  &.blurShortsThumbnails {
+    & ytm-shorts-lockup-view-model img {
+      filter: blur(20px) !important;
+      transition: filter 0.3s ease-in-out;
+    }
+  }
+
+  /* Hide Shorts Thumbnail */
+  &.hideShortsThumbnails {
+    & ytm-shorts-lockup-view-model {
+      & img {
+        display: none !important;
+      }
+      & > a > div {
+        background-color: var(
+          --yt-sys-color-baseline--additive-background
+        ) !important;
+      }
+    }
+  }
+
+  /* Grayscale Shorts Thumbnails */
+  &.grayscaleShortsThumbnails {
+    & ytm-shorts-lockup-view-model img {
+      filter: grayscale(100%);
+      transition: filter 0.3s ease-in-out;
+    }
+  }
+
+  /*+------------------------------------------------------------------+
+    |                         SHORTS SETTINGS                         |
+    +------------------------------------------------------------------ */
+
+  /* Hide Shorts */
+  &.hideShorts {
+    & a[title="Shorts"],
+    & *[is_short],
+    & ytd-reel-shelf-renderer,
+    & grid-shelf-view-model:has(ytm-shorts-lockup-view-model),
+    & ytd-rich-shelf-renderer[is-shorts],
+    & ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+    & ytm-reel-shelf-renderer,
+    & ytm-search ytm-reel-shelf-renderer {
+      display: none !important;
+    }
+  }
+
+  /* Disable Infinite Scroll */
+  &.disableShortsInfiniteScroll {
+    &
+      .reel-video-in-sequence-new.style-scope.ytd-shorts:has(
+        ytd-reel-video-renderer
+      ) {
+      display: none !important;
+    }
+  }
+
+  /*+------------------------------------------------------------------+
+    |                     SEARCH PAGE SETTINGS                         |
+    +------------------------------------------------------------------ */
+
+  /* Hide Irrelevant Search */
+  &.hideIrrelevantSearch {
+    & #container.ytd-search ytd-shelf-renderer,
+    & #container.ytd-search ytd-search-pyv-renderer {
+      display: none !important;
+    }
+  }
+
+  /* Disable Search Infinite Scroll */
+  &.disableSearchInfiniteScroll {
+    & .ytd-search #contents > ytd-continuation-item-renderer {
+      display: none !important;
+    }
+  }
+
+  /*+------------------------------------------------------------------+
+    |                        WATCH PAGE SETTINGS                         |
+    +------------------------------------------------------------------ */
+
+  /* Hide Sidebar Suggestions */
+  &.hideSidebarSuggestions {
+    &
+      div#secondary.style-scope.ytd-watch-flexy:has(
+        ytd-watch-next-secondary-results-renderer
+      ),
+    & #rys_sidebar_reveal_box,
+    & ytm-item-section-renderer[section-identifier="related-items"],
+    & #secondary > div.circle,
+    & #related {
+      display: none !important;
+    }
+  }
+
+  /* Hide Video Description */
+  &.hideVideoDescription {
+    & ytd-watch-metadata #description {
+      display: none !important;
+    }
+  }
+
+  /* Hide Comments */
+  &.hideComments {
+    & #comments,
+    & #comment-teaser,
+    &
+      ytd-engagement-panel-section-list-renderer[target-id="engagement-panel-comments-section"],
+    & ytm-comments-entry-point-header-renderer {
+      display: none !important;
+    }
+  }
+
+  /* Hide Playlist */
+  &.hidePlaylist {
+    & ytd-playlist-panel-renderer {
+      display: none !important;
+    }
+  }
+
+  /* Hide Live Chat */
+  &.hideLiveChat {
+    & #chat {
+      display: none !important;
+    }
+  }
+
+  /* Hide Fundraiser */
+  &.hideFundraiser {
+    & #donation-shelf {
+      display: none !important;
+    }
+  }
+
+  /* Hide Merch & Tickets */
+  &.hideMerchTickets {
+    & #clarify-box,
+    & #offer-module,
+    & #ticket-shelf,
+    & .ytp-drawer,
+    & yt-alert-with-actions-renderer,
+    & ytd-merch-shelf-renderer,
+    & ytd-metadata-row-container-renderer > #always-shown {
+      display: none !important;
+    }
+  }
+
+  /* Hide Like Button */
+  &.hideLikeButton {
+    & like-button-view-model {
+      display: none !important;
+    }
+    & div:has(> like-button-view-model) {
+      background-color: transparent !important;
+    }
+
+    & dislike-button-view-model button {
+      background-color: transparent !important;
+    }
+  }
+
+  /* Hide All But Timestamped Comments */
+  &.hideAllButTimestampedComments {
+    & ytd-comment-view-model:not(:has(a[href*="t="])) {
+      display: none !important;
+    }
+  }
+
+  /* Hide Comment Replies */
+  &.hideCommentReplies {
+    & #collapsed-threads,
+    & #expanded-threads {
+      display: none !important;
+    }
+  }
+
+  /* Hide Endscreen Cards */
+  &.hideEndScreenCards {
+    & .ytp-ce-element,
+    & .ytp-ce-hide-button-container {
+      display: none !important;
+    }
+  }
+
+  /* Hide EndScreen Feed */
+  &.hideEndScreenFeed {
+    & .html5-endscreen:not(.mweb-endscreen),
+    & .ytp-fullscreen-grid {
+      display: none !important;
+    }
+  }
+
+  /*+------------------------------------------------------------------+
+    |                             ADS SETTINGS                         |
+    +------------------------------------------------------------------ */
+}
